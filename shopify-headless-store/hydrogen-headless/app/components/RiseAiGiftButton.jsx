@@ -5,6 +5,7 @@ import { CartForm } from '@shopify/hydrogen';
 import { useAside } from '~/components/Aside';
 
 // In a real app, the variables below would be fetched from an API, url query params, or a context provider
+// Remember to call window.RiseSdk.refreshGift() in case these values changes (e.g if user replaces variant without a page reload)
 const GIFT_CARD_PRODUCT_ID = "9702880870691";
 const PRODUCT_VARIANT_ID = "43696932126742";
 
