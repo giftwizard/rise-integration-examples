@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sample Product - Online Store</title>
+
+    <!-- Link to Rise.ai script for headless cart -->
+    <script src="https://str.rise-ai.com/?shop=rise-headless-example.myshopify.com" defer></script>
+
+    <script src="./script.js" defer></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#">Add to cart headless</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Cart</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="product-page">
+            <div class="product-container">
+                <div class="product-image-gallery">
+                    <img src="https://media.istockphoto.com/id/2161671727/photo/gift-cards.jpg?s=2048x2048&w=is&k=20&c=bYaJdDWnfKA4Z_LjJ9uLLuM6d0nZJ8Un6mfvk2W6BjI=" alt="Product Image" class="product-image-main">
+                </div>
+
+                <div class="product-details">
+                    <h1 id="product-title">Gift Card</h1>
+                    <p id="product-description">Shopping for someone else but not sure what to give them? Give them the gift of choice with a gift card.</p>
+                    <p id="product-price">$99.99</p>
+                    
+                    <button id="add-to-cart-button" class="add-to-cart Rise-add-to-cart-button">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2024 Online Store. All Rights Reserved</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
