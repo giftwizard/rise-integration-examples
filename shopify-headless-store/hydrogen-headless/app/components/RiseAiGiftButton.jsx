@@ -45,7 +45,7 @@ function createAddToCartPayload(gift) {
                     { key: '_recipient_name', value: gift.name },
                     { key: '_recipient_email', value: gift.email },
                     { key: '_gift_message', value: gift.message },
-                    { key: '_gift_image', value: gift.email },
+                    { key: '_gift_image', value: gift.image },
                     { key: '_gift_send_at', value: gift.send_at }
                 ].filter(prop => !!prop.value)
             }]
