@@ -36,11 +36,20 @@ function createAddToCartPayload(gift) {
                 merchandiseId: `gid://shopify/ProductVariant/${PRODUCT_VARIANT_ID}`,
                 quantity: 1,
                 attributes: [
+                    // the first 3 properties are needed for several specific 
+                    // setups, yet, as it is not harmful lets add them all
+                    { key: 'Recipient Name', value: gift.name },
+                    { key: 'Recipient Email', value: gift.email },
+                    { key: 'Gift Message', value: gift.message },
                     { key: '_gift_id', value: gift._gift_id },
-                    { key: 'message', value: gift.message },
-                    { key: 'email', value: gift.email },
+                    { key: '_recipient_name', value: gift.name },
+                    { key: '_recipient_email', value: gift.email },
+                    { key: '_gift_message', value: gift.message },
+                    { key: '_gift_image', value: gift.email },
+                    { key: 'email', value: gift.image },
+                    { key: '_gift_send_at', value: gift.send_at },
                     { key: 'name', value: gift.name }
-                ]
+                ].filter(prop => !!prop.value)
             }]
         }
     };
