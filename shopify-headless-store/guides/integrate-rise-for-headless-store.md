@@ -63,18 +63,42 @@ function getProductId() {
     return GIFTCARD_PRODUCT_ID;
 }
 
-async function addToCart({ gift }) {
-    const { _gift_id, message, email, name } = gift;
-    const productId = getProductId();
-    
-    const productToBeAdded = {
-        id: productId,
-        properties: {
+// should be used by users that installed the 'new-platform'
+function getPropertiesForNewPlatform(gift) {
+    const {name, email, message} = gift
+    return {
             _gift_id,
             Name: name,
             Email: email,
             Message: message
         }
+}
+
+// should be used by users that installed the 'v1-platform'
+function getPropertiesForV1(gift) {
+   const {name, email, message, send_at} = gift
+   return {
+         'Recipient Name': name,
+        'Recipient Email': email,
+        'Gift Message': message,
+        _recipient_name: name,
+        ...(email && { _recipient_email: email }),
+        _gift_message: message,
+        _gift_image: image,
+        ...(send_at && { _gift_send_at: send_at })
+        }
+}
+
+async function addToCart({ gift }) {
+    const productId = getProductId();
+
+    const productToBeAdded = {
+        id: productId,
+        // rise has two possible versions, "v1" and "new platform"
+        // each version has its own needed properties.
+        // see above the getPropertiesForNewPlatform / getPropertiesForV1 functions and use
+        // the one that suits your installation
+        properties: getPropertiesForNewPlatform(gift)
     };
 
     // Use your existing addToCart function to add the product to the cart.
