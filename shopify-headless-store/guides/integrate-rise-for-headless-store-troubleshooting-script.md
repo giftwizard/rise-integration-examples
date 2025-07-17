@@ -18,10 +18,20 @@ To run the script, follow these steps:
 function checkRiseIntegration() {
     if (window.Rise) {
         console.log("Rise object is found:", window.Rise);
+        // Check for product ID and validate it
+        const productId = window.Rise.product?.id;
+        if (productId) {
+            // Validate if the product ID is a non-empty string containing only numbers.
+            if (/^\d+$/.test(productId)) {
+                console.log("Product ID is a valid numeric value.");
+            } else {
+                console.error("Validation Error: Product ID is not valid. It should be a string containing only numbers and cannot be empty.");
+            }
+        }
     } else {
         console.error("Rise object not found. Please check your integration.");
     }
-    
+
     // Check if the script is loaded
     const riseScript = document.querySelector('script[src*="rise-ai.com"]');
     if (riseScript) {
@@ -29,7 +39,7 @@ function checkRiseIntegration() {
     } else {
         console.error("Rise script is not loaded. Make sure the script tag is added properly.");
     }
-    
+
     // Check if 'Rise-add-to-cart-button' class is on the button
     const addToCartButton = document.querySelector('.Rise-add-to-cart-button');
     if (addToCartButton) {
@@ -37,7 +47,7 @@ function checkRiseIntegration() {
     } else {
         console.error("'Add to Cart' button not found. Please ensure the correct class is added.");
     }
-    
+
     // Check if the add to cart logic is set up
     if (typeof addToCart === 'function') {
         console.log("Add to Cart function is implemented correctly.");
@@ -67,9 +77,7 @@ function checkRiseIntegration() {
         console.error("Shop URL not found in Rise object. Please verify you have added the window.Rise object correctly");
     }
 
-        
     console.warn("Please verify manually that addToCart actually adds the product to the cart, the script cannot check it")
-
 }
 
 // Run the check
