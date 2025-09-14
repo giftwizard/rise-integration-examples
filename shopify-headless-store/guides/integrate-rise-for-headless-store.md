@@ -67,7 +67,6 @@ function getProductId() {
 function getPropertiesForNewPlatform(gift) {
     const {name, email, message} = gift
     return {
-            _gift_id,
             Name: name,
             Email: email,
             Message: message
