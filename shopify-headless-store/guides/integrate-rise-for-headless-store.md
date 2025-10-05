@@ -108,6 +108,7 @@ In this code:
 
 - The lineItemProps contains information about the gift card (e.g., recipient's name, email, and message).
 - addToCart adds the gift card product to the Shopify cart, including the relevant properties.
+- `Gift Message` is limited to **500** characters.
 
 #### 5. Test the Integration
 Once you've completed the integration steps, you can test the functionality by visiting the gift card product page on your store.
