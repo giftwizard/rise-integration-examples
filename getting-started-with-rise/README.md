@@ -85,6 +85,8 @@ curl -X POST \
 
 You're done. Build your flows using the relevant Rise service endpoints. Repeat token creation for each merchant `instanceId` that installs your app.
 
+**💡 Want to see this in action?** Check out our [OAuth Demo project](./oauth-demo/) for a complete working example.
+
 ---
 
 ### Best practices
