@@ -63,29 +63,24 @@ function getProductId() {
     return GIFTCARD_PRODUCT_ID;
 }
 
-// should be used by users that installed the 'new-platform'
-function getPropertiesForNewPlatform(gift) {
-    const {name, email, message} = gift
-    return {
-            Name: name,
-            Email: email,
-            Message: message
-        }
-}
+// Returns a comprehensive set of properties for any platform
+function getGiftProperties(gift) {
+    const { name, email, message, image, send_at, _gift_id } = gift;
 
-// should be used by users that installed the 'v1-platform'
-function getPropertiesForV1(gift) {
-   const {name, email, message, send_at} = gift
-   return {
-         'Recipient Name': name,
+    return {
+        // user-facing keys
+        'Recipient Name': name,
         'Recipient Email': email,
         'Gift Message': message,
+
+        // internal keys (used by various setups)
+        _gift_id: _gift_id,
         _recipient_name: name,
         ...(email && { _recipient_email: email }),
         _gift_message: message,
-        _gift_image: image,
-        ...(send_at && { _gift_send_at: send_at })
-        }
+        ...(image && { _gift_image: image }),
+        ...(send_at && { _gift_send_at: send_at }),
+    };
 }
 
 async function addToCart({ gift }) {
