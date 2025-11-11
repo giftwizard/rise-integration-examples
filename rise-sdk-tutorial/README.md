@@ -1,22 +1,8 @@
 # Rise SDKs
 
-## What is an SDK?
+## Important Note
 
-An SDK (Software Development Kit) is a set of pre-built tools, libraries, and code that makes it easier for developers to integrate with a service or platform. Instead of manually constructing API requests and handling authentication, error handling, and data formatting yourself, an SDK provides ready-to-use functions that abstract away these complexities.
-
-Think of it as a toolkit that lets you focus on building your application logic rather than dealing with the technical details of API integration. With Rise SDKs, you can integrate loyalty programs and gift card functionality into your application with just a few lines of code.
-
-## Overview
-
-Official SDKs for integrating with the Rise loyalty and gift card platform. Build powerful customer loyalty programs, manage digital gift cards, and create wallet-based rewards systems with type-safe, production-ready SDKs.
-
-## Why Use Rise SDKs?
-
-- **Type Safety** - Full type support with auto-generated types from our OpenAPI spec
-- **Simplified Authentication** - Built-in OAuth and API Key authentication handling
-- **Comprehensive Coverage** - Access all Rise platform APIs through a single client
-- **Production Ready** - Automatic token management, error handling, and retry logic
-- **Developer Experience** - Intuitive API namespaces and clear documentation
+This documentation is only relevant to Rise v2.0. If you notice any discrepancies or if the information differs from what you know, please reach out to the Rise support team for assistance.
 
 ## Available SDKs
 
@@ -71,6 +57,24 @@ Official SDKs for integrating with the Rise loyalty and gift card platform. Buil
 </td>
 </tr>
 </table>
+
+## What is an SDK?
+
+An SDK (Software Development Kit) is a set of pre-built tools, libraries, and code that makes it easier for developers to integrate with a service or platform. Instead of manually constructing API requests and handling authentication, error handling, and data formatting yourself, an SDK provides ready-to-use functions that abstract away these complexities.
+
+Think of it as a toolkit that lets you focus on building your application logic rather than dealing with the technical details of API integration. With Rise SDKs, you can integrate loyalty programs and gift card functionality into your application with just a few lines of code.
+
+## Overview
+
+Official SDKs for integrating with the Rise loyalty and gift card platform. Build powerful customer loyalty programs, manage digital gift cards, and create wallet-based rewards systems with type-safe, production-ready SDKs.
+
+## Why Use Rise SDKs?
+
+- **Type Safety** - Full type support with auto-generated types from our OpenAPI spec
+- **Simplified Authentication** - Built-in OAuth and API Key authentication handling
+- **Comprehensive Coverage** - Access all Rise platform APIs through a single client
+- **Production Ready** - Automatic token management, error handling, and retry logic
+- **Developer Experience** - Intuitive API namespaces and clear documentation
 
 ## Authentication
 
