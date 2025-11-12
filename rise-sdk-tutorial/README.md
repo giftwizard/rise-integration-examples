@@ -9,7 +9,7 @@
 
 <table style="width: 100%; border-spacing: 0; border-collapse: separate;">
 <tr>
-<td width="25%" align="left" style="padding: 12px; vertical-align: top;">
+<td width="25%" align="left" style="padding: 10px;">
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
@@ -26,7 +26,7 @@
 <br>
 
 </td>
-<td width="25%" align="left" style="padding: 12px; vertical-align: top;">
+<td width="25%" align="left" style="padding: 10px; vertical-align: top;">
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 
@@ -41,7 +41,7 @@
 <br><br>
 
 </td>
-<td width="25%" align="left" style="padding: 12px; vertical-align: top;">
+<td width="25%" align="left" style="padding: 10px; vertical-align: top;">
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 
@@ -56,7 +56,7 @@
 <br><br>
 
 </td>
-<td width="25%" align="left" style="padding: 12px; vertical-align: top;">
+<td width="25%" align="left" style="padding: 10px; vertical-align: top;">
 
 ![.NET](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 
