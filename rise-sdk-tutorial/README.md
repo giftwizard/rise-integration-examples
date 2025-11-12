@@ -7,17 +7,15 @@
 
 ## Available SDKs
 
-<table style="border-spacing: 16px; border-collapse: separate;">
+<table style="width: 100%; border-spacing: 0; border-collapse: separate;">
 <tr>
-<td width="25%" align="center" style="border: 2px solid #e1e4e8; border-radius: 12px; padding: 24px; vertical-align: top;">
-
-<div style="min-height: 60px; display: flex; align-items: center; justify-content: center;">
+<td width="25%" align="left" style="padding: 12px; vertical-align: top;">
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
-</div>
-
 **TypeScript SDK**
+
+<br>
 
 [npm](https://www.npmjs.com/package/rise-typescript-sdk)
 
@@ -25,50 +23,52 @@
 
 [Quickstart](https://github.com/giftwizard/rise-typescript-sdk#quickstart)
 
-</td>
-<td width="25%" align="center" style="border: 2px solid #e1e4e8; border-radius: 12px; padding: 24px; vertical-align: top;">
+<br>
 
-<div style="min-height: 60px; display: flex; align-items: center; justify-content: center;">
+</td>
+<td width="25%" align="left" style="padding: 12px; vertical-align: top;">
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 
-</div>
-
 **Java SDK**
+
+<br>
 
 [GitHub](https://github.com/giftwizard/rise-java-sdk)
 
 [Quickstart](https://github.com/giftwizard/rise-java-sdk#quickstart)
 
-</td>
-<td width="25%" align="center" style="border: 2px solid #e1e4e8; border-radius: 12px; padding: 24px; vertical-align: top;">
+<br><br>
 
-<div style="min-height: 60px; display: flex; align-items: center; justify-content: center;">
+</td>
+<td width="25%" align="left" style="padding: 12px; vertical-align: top;">
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 
-</div>
-
 **Python SDK**
+
+<br>
 
 [GitHub](https://github.com/giftwizard/rise-python-sdk)
 
 [Quickstart](https://github.com/giftwizard/rise-python-sdk#quickstart)
 
-</td>
-<td width="25%" align="center" style="border: 2px solid #e1e4e8; border-radius: 12px; padding: 24px; vertical-align: top;">
+<br><br>
 
-<div style="min-height: 60px; display: flex; align-items: center; justify-content: center;">
+</td>
+<td width="25%" align="left" style="padding: 12px; vertical-align: top;">
 
 ![.NET](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 
-</div>
-
 **.NET SDK**
+
+<br>
 
 [GitHub](https://github.com/giftwizard/rise-dotnet-sdk)
 
 [Quickstart](https://github.com/giftwizard/rise-dotnet-sdk#quickstart)
+
+<br><br>
 
 </td>
 </tr>
