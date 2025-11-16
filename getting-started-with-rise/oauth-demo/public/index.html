@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rise OAuth Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      max-width: 600px;
+      width: 100%;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+
+    .section {
+      margin: 25px 0;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+
+    .section h2 {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .value {
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 12px;
+      border-radius: 4px;
+      word-break: break-all;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .secret-value {
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 12px;
+      border-radius: 4px;
+      word-break: break-all;
+      font-size: 13px;
+      margin-top: 8px;
+      position: relative;
+    }
+
+    .secret-mask {
+      color: #888;
+    }
+
+    .connect-button {
+      width: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 30px;
+    }
+
+    .connect-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .connect-button:active {
+      transform: translateY(0);
+    }
+
+    .connect-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .info {
+      background: #e7f3ff;
+      border-left: 4px solid #2196F3;
+      padding: 15px;
+      border-radius: 4px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #1976D2;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      color: #666;
+    }
+
+    .loading.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚀 Rise OAuth Demo</h1>
+    <p class="subtitle">Demonstrate OAuth authentication flow with Rise.ai</p>
+
+    <div class="section">
+      <h2>App ID</h2>
+      <div class="value" id="appId">Loading...</div>
+    </div>
+
+    <div class="section">
+      <h2>App Secret</h2>
+      <div class="secret-value">
+        <span class="secret-mask">••••••••••••••••</span>
+        <span style="display: none;">Configured (hidden for security)</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Redirect URL</h2>
+      <div class="value" id="redirectUrl">Loading...</div>
+    </div>
+
+    <button class="connect-button" id="connectButton" onclick="connectWithRise()">
+      Connect with Rise
+    </button>
+
+    <div class="loading" id="loading">
+      Redirecting to Rise installer...
+    </div>
+
+    <div class="info">
+      <strong>ℹ️ How it works:</strong><br>
+      1. Click "Connect with Rise" to start the installation flow<br>
+      2. You'll be redirected to Rise's installer page<br>
+      3. After approval, you'll be redirected back with an instanceId<br>
+      4. The server will exchange credentials for an access token<br>
+      5. Results will be displayed on the callback page
+    </div>
+  </div>
+
+  <script>
+    // Load configuration from server
+    async function loadConfig() {
+      try {
+        const response = await fetch('/api/config');
+        const config = await response.json();
+        
+        document.getElementById('appId').textContent = config.appId || 'Not configured';
+        document.getElementById('redirectUrl').textContent = config.redirectUrl || 'Not configured';
+        
+        if (!config.hasSecret) {
+          document.querySelector('.secret-value').innerHTML = '<span style="color: #d32f2f;">⚠️ App Secret not configured</span>';
+        }
+        
+        if (!config.appId || !config.redirectUrl) {
+          document.getElementById('connectButton').disabled = true;
+          document.getElementById('connectButton').textContent = 'Configuration Required';
+        }
+      } catch (error) {
+        console.error('Failed to load config:', error);
+        document.getElementById('appId').textContent = 'Error loading configuration';
+        document.getElementById('redirectUrl').textContent = 'Error loading configuration';
+        document.getElementById('connectButton').disabled = true;
+      }
+    }
+
+    // Connect with Rise - redirect to installer
+    function connectWithRise() {
+      const button = document.getElementById('connectButton');
+      const loading = document.getElementById('loading');
+      
+      button.disabled = true;
+      loading.classList.add('active');
+      
+      // Get config to build the installer URL
+      fetch('/api/config')
+        .then(res => res.json())
+        .then(config => {
+          if (!config.appId || !config.redirectUrl) {
+            alert('Please configure APP_ID and REDIRECT_URL in your .env file');
+            button.disabled = false;
+            loading.classList.remove('active');
+            return;
+          }
+          
+          // Encode the redirect URL
+          const encodedRedirectUrl = encodeURIComponent(config.redirectUrl);
+          
+          // Build the installer URL
+          const installerUrl = `https://platform.rise.ai/protected/app-installer/install?appId=${config.appId}&redirectUrl=${encodedRedirectUrl}`;
+          
+          // Redirect to Rise installer
+          window.location.href = installerUrl;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Failed to initiate OAuth flow. Please check your configuration.');
+          button.disabled = false;
+          loading.classList.remove('active');
+        });
+    }
+
+    // Load config on page load
+    loadConfig();
+  </script>
+</body>
+</html>
+
