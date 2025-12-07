@@ -59,6 +59,8 @@ Duplicate deliveries should be harmless (basic idempotency handling is included)
 ## Prerequisites
 Before you begin, ensure you have a Rise.ai account and an API key. If you haven't already, please follow our [Getting Started with Rise.ai guide](../../getting-started-with-rise/README.md) to set up your account and obtain your credentials.
 
+**Webhook Configuration:** You must configure webhooks in your Rise.ai dashboard with the help of the rise team to receive events. See the [Rise.ai Webhooks Guide](https://dev.rise.ai/use-cases/webhooks-guide) for detailed setup instructions.
+
 ## Installation & running
 
 ### Requirements
@@ -146,6 +148,7 @@ Content-Type: application/jwt
 - **Mapping:** Ensure a one-to-one mapping between your local gift card and Rise's gift card (by shared code, mapping table, or both).
 
 - **Webhooks:** 
+  - Configure webhooks in your Rise.ai dashboard with the help of the rise.ai team (see [Webhooks Guide](https://dev.rise.ai/use-cases/webhooks-guide))
   - Verify JWT signatures using the Rise webhook public key
   - The webhook payload requires **double parsing**: decode the JWT, then parse the nested JSON data fields
   - Implement retries and dead-letter queues for production
@@ -155,10 +158,11 @@ Content-Type: application/jwt
 
 - **Security:** Secure all endpoints with proper authentication/authorization and use HTTPS.
 
-## How it aligns with the guideide
+## How it aligns with the guide
 This project follows the bidirectional sync approach. Your system triggers endpoints at the exact moments native logic changes a card (e.g., redemption at checkout), and those endpoints call the corresponding Rise API. Conversely, Rise webhooks (delivered as JWT tokens with nested JSON) update local data when changes originate on the Rise side.
 
 ## References
 - [Rise.ai API Documentation](https://dev.rise.ai/)
+- [Rise.ai Webhooks Guide](https://dev.rise.ai/use-cases/webhooks-guide)
 
 
