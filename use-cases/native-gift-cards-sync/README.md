@@ -160,6 +160,5 @@ This project follows the bidirectional sync approach. Your system triggers endpo
 
 ## References
 - [Rise.ai API Documentation](https://dev.rise.ai/)
-- [Rise.ai Webhook Documentation](https://dev.rise.ai/webhooks)
 
 
