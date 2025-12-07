@@ -12,7 +12,7 @@ The codebase is designed to be **platform-agnostic** - you can integrate it with
 
 - Node.js 18.0.0 or higher
 - npm or yarn package manager
-- Rise.ai account with API access
+- Rise.ai account with API access (link to the get started guide)
 
 ## Installation
 
@@ -26,14 +26,11 @@ npm install
 ## Configuration
 
 Before running the project, you'll need to configure your Rise.ai credentials. Create a `.env` file in the root directory:
+@ sam -- you need to create a rise account and then create an api key as the getting started guide shows, as for the tenantID - you can get it from the https://platform.rise.ai/account/${account-idf}/rise-platform-account-dashboard/sales-channel-list, as for the channel id, please see channel ids at -...
 
 ```env
 RISE_API_TOKEN=your_api_token_here
 RISE_ACCOUNT_ID=your_account_id_here
-RISE_API_VERSION=2020-07-16
-RISE_SOURCE_TENANT_ID=your_tenant_id_here
-RISE_SOURCE_CHANNEL_ID=your_channel_id_here
-RISE_SOURCE_LOCATION_ID=your_location_id_here
 PORT=3000
 ```
 
@@ -41,10 +38,7 @@ PORT=3000
 
 - `RISE_API_TOKEN`: Your Rise.ai API token (required)
 - `RISE_ACCOUNT_ID`: Your Rise.ai account ID (required)
-- `RISE_API_VERSION`: API version to use (optional, defaults to `2020-07-16`)
 - `RISE_SOURCE_TENANT_ID`: Your shop ID or store identifier (required)
-- `RISE_SOURCE_CHANNEL_ID`: Your channel ID (found in Rise.ai dashboard under "Channels") (required)
-- `RISE_SOURCE_LOCATION_ID`: Your location ID (optional, if applicable)
 - `PORT`: Server port (optional, defaults to 3000)
 
 ## Running the Project
