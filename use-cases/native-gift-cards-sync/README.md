@@ -159,7 +159,7 @@ Content-Type: application/jwt
 This project follows the bidirectional sync approach. Your system triggers endpoints at the exact moments native logic changes a card (e.g., redemption at checkout), and those endpoints call the corresponding Rise API. Conversely, Rise webhooks (delivered as JWT tokens with nested JSON) update local data when changes originate on the Rise side.
 
 ## References
-- [Rise.ai API Documentation](https://platform.rise.ai/docs)
-- [Rise.ai Webhook Documentation](https://platform.rise.ai/docs/webhooks)
+- [Rise.ai API Documentation](https://dev.rise.ai/)
+- [Rise.ai Webhook Documentation](https://dev.rise.ai/webhooks)
 
 
