@@ -12,7 +12,7 @@ This example project mocks a native/platform gift card system and demonstrates h
 ## Why bidirectional sync?
 Per the Rise.ai guide, the sync approach allows you to keep your existing platform-native gift card features while using Rise's advanced capabilities. Both systems maintain gift card records and must stay synchronized.
 
-**Documentation:** See the official Rise API docs at https://platform.rise.ai/docs
+**Documentation:** See the official Rise API docs at https://dev.rise.ai/
 
 ## Key flows in this example
 
