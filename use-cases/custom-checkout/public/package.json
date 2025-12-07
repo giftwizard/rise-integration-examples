@@ -1,0 +1,32 @@
+{
+    "name": "custom-checkout-flow",
+    "version": "1.0.0",
+    "description": "Platform-agnostic custom checkout flow with Rise.ai gift card integration",
+    "type": "module",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js",
+      "dev": "node --watch server.js",
+      "lint": "eslint . --ext .js"
+    },
+    "dependencies": {
+      "express": "^4.18.2",
+      "cors": "^2.8.5",
+      "dotenv": "^16.3.1"
+    },
+    "devDependencies": {
+      "eslint": "^8.20.0"
+    },
+    "engines": {
+      "node": ">=18.0.0"
+    },
+    "keywords": [
+      "checkout",
+      "gift-card",
+      "rise-ai",
+      "ecommerce"
+    ],
+    "author": "",
+    "license": "MIT"
+  }
+  

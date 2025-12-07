@@ -20,7 +20,7 @@ router.get('/callback', async (req, res) => {
 
     if (config.USE_SDK) {
       try {
-        const { RiseSDKClient } = await import('@rise/rise-typescript-sdk');
+        const { RiseSDKClient } = await import('rise-ai-sdk');
         const sdk = await RiseSDKClient.withOAuth({
           clientId: config.APP_ID,
           clientSecret: config.APP_SECRET,

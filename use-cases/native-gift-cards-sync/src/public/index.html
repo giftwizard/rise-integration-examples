@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Native Gift Cards - Rise.ai Sync</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎁 Native Gift Card System</h1>
+      <p>This system manages gift cards locally and syncs them bidirectionally with <strong>Rise.ai</strong>. 
+      When gift cards are created or modified in this system, changes are automatically synchronized to Rise.ai. 
+      Similarly, when changes occur in Rise.ai, webhooks update this system to keep both in sync.</p>
+      <span class="sync-badge">✓ Synced with Rise.ai</span>
+    </div>
+    
+    <div class="grid">
+      <div class="card">
+        <h2>⚙️ Rise.ai Configuration</h2>
+        <form id="configForm" class="config-form">
+          <div class="form-group">
+            <label for="apiKey">API Key</label>
+            <input type="password" id="apiKey" placeholder="Enter your Rise.ai API key" />
+          </div>
+          <div class="form-group">
+            <label for="tenantId">Tenant ID (Account ID)</label>
+            <input type="text" id="tenantId" placeholder="merchant_123" />
+          </div>
+          <div class="form-group">
+            <label for="channelId">Channel ID</label>
+            <input type="text" id="channelId" placeholder="d0376a10-382a-4b0b-a2d8-f8ba42dc0e50" />
+          </div>
+          <div class="form-group">
+            <label for="apiBase">API Base URL</label>
+            <input type="text" id="apiBase" placeholder="https://platform.rise.ai" />
+          </div>
+          <button type="submit" class="btn btn-primary">Save Configuration</button>
+          <div id="configMessage"></div>
+        </form>
+      </div>
+      
+      <div class="card">
+        <h2>✨ Create Gift Card</h2>
+        <form id="createGiftCardForm" class="config-form">
+          <div class="form-group">
+            <label for="initialValue">Initial Value (in Dollars)</label>
+            <input type="number" id="initialValue" placeholder="e.g., 50 for $50.00" value="50" required />
+          </div>
+          <div class="form-group">
+            <label for="code">Code</label>
+            <input type="text" id="code" placeholder="A unique code for the card" required minlength="8" maxlength="16" />
+          </div>
+          <button type="submit" class="btn btn-primary">Create Gift Card</button>
+          <div id="createMessage"></div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>🎫 Gift Cards in System</h2>
+        <div id="giftCardsContainer">
+          <div class="loading">Loading gift cards...</div>
+        </div>
+        <button class="btn refresh-btn" onclick="loadGiftCards()">🔄 Refresh</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>

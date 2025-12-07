@@ -12,7 +12,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@rise/rise-typescript-sdk": "^1.0.0",
+    "rise-ai-sdk": "^1.0.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2"
   }

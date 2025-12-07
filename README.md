@@ -6,9 +6,14 @@ Quick guide to choose between API Key vs OAuth App and make your first API call.
 
 Read: [Getting Started with Rise](./getting-started-with-rise/README.md)
 
-## Shopify Headless integration
-Examples & guides for how to integrate Rise.ai's gift card functionality into a headless Shopify store.
+## Use Cases
 
-More info is available [here](./shopify-headless-store/README.md).
+This repository contains several examples of how to integrate Rise.ai in different scenarios. Each use case is self-contained and includes a detailed guide.
+
+*   **[Custom Checkout](./use-cases/custom-checkout/README.md)**: Implement a custom checkout flow with Rise.ai gift card integration.
+*   **[Native Gift Card Sync](./use-cases/native-gift-cards-sync/README.md)**: Sync your platform's native gift cards with Rise.ai.
+*   **[Shopify Headless Store](./use-cases/shopify-headless-store/README.md)**: Integrate Rise.ai into a headless Shopify store.
+
+For more details, see the [Use Cases README](./use-cases/README.md).
 
 

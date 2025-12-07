@@ -73,50 +73,67 @@ Before you begin, you'll need:
    ```
    APP_ID=your_app_id_here
    APP_SECRET=your_app_secret_here
-   REDIRECT_URL=http://localhost:3000/oauth/callback # For local development, use localhost. Extract instanceId from production redirect URL.
+   REDIRECT_URL=http://localhost:3000/oauth/callback # Or put your actual redirect url, see next section for local development
    USE_SDK=false # Set to 'true' to use the SDK, 'false' to use plain HTTP
    PORT=3000
    ```
 
-**How local testing works:**
-1. When a merchant installs your app, Rise redirects to the registered production `redirectUrl`
-   (e.g., `https://myapp.com/oauth/callback`)
-2. The redirect URL will contain `code` and `instanceId`
-   ```
-   https://myapp.com/oauth/callback?code=abc123&instanceId=xyz789
-   ```
-3. Copy these two values and use them locally to exchange for a token.
+## Local Development Testing
 
-**Example workflow:**
-- You start the demo locally on `http://localhost:3000`
-- Click “Connect with Rise”
-- You are redirected to a **production** callback URL:
-  ```
-  https://your-production-site.com/oauth/callback?code=A1B2C3&instanceId=MERCHANT-123
-  ```
-- Copy `code=A1B2C3` and `instanceId=MERCHANT-123`
-- Paste them into the UI form on `http://localhost:3000` or trigger the token exchange locally
-- The server exchanges them for an access token using your local credentials
+Since the `REDIRECT_URL` is configured on the Rise side and must be HTTPS in production, you have two options for local testing:
 
-✅ This allows you to test the OAuth token exchange locally even though the callback itself is HTTPS-only in production.
+### Option 1: Use Your Production HTTPS URL (Recommended)
 
-### Optional: Fully local HTTPS redirect
-If you prefer a fully local loop (no copy/paste), you can run your local server over HTTPS using a tunneling service like **ngrok**:
-```bash
-ngrok http 3000
-ngrok gives you an HTTPS URL (e.g., https://abcd1234.ngrok.io)
-```
+This is the simplest and most reliable method.
 
-Use this as your REDIRECT_URL in .env:
+1.  **Register Your Production URL**: Provide your actual production HTTPS URL to the Rise Partnerships team:
+    ```
+    https://your-production-domain.com/oauth/callback
+    ```
 
-```bash
-REDIRECT_URL=https://abcd1234.ngrok.io/oauth/callback
-```
+2.  **Start the OAuth Flow**: Run the demo locally and click "Connect with Rise".
 
-Send this URL to the Rise Partnerships team to register
+3.  **Get Redirected**: You will be redirected to your production URL with the `code` and `instanceId` in the query string:
+    ```
+    https://your-production-domain.com/oauth/callback?code=A1B2C3&instanceId=MERCHANT-123
+    ```
 
-✅ Now the entire OAuth flow works automatically, end-to-end, on localhost.
+4.  **Test Locally**: Copy the `code` and `instanceId` from the URL. You can now use these values to make requests to your local server's `/oauth/callback` endpoint to complete the token exchange for debugging.
 
+**Benefits**:
+- Tests the real production flow from the start.
+- No need for URL manipulation or placeholder URLs.
+
+### Option 2: URL Substitution Method
+
+Use this method if you cannot set up a production URL initially.
+
+1.  **Register a Placeholder URL**: Ask the Rise team to register a temporary, non-working URL, for example:
+    ```
+    https://non-working-local-test-123.com/oauth/callback
+    ```
+
+2.  **Start Your Local Server**:
+    ```bash
+    npm start
+    # Server runs on http://localhost:3000
+    ```
+
+3.  **Get Redirected to Placeholder**: When you test the OAuth flow, Rise will redirect you to the placeholder URL:
+    ```
+    https://non-working-local-test-123.com/oauth/callback?code=A1B2C3&instanceId=MERCHANT-123
+    ```
+
+4.  **Manually Replace the Domain**: In your browser's address bar, replace the placeholder domain with your local server's address:
+    ```
+    http://localhost:3000/oauth/callback?code=A1B2C3&instanceId=MERCHANT-123
+    ```
+
+5.  **Press Enter**: Your local server will now receive the callback and complete the token exchange.
+
+**Important**: Before going to production, you **must** contact the Rise Partnerships team again to update the redirect URL to your final, working production URL.
+
+✅ Both methods allow you to test the OAuth token exchange locally while accommodating the HTTPS requirement for the redirect URL in production.
 
    **Choose your approach:**
    - Set `USE_SDK=true` to use the Rise TypeScript SDK (recommended for better type safety and convenience)
@@ -200,7 +217,7 @@ const tokenData = await tokenResponse.json();
 This approach provides better type safety, automatic token management, and convenience:
 
 ```javascript
-import { RiseSDKClient } from '@rise/rise-typescript-sdk';
+import { RiseSDKClient } from 'rise-ai-sdk';
 
 // Initialize SDK with OAuth credentials
 const sdk = await RiseSDKClient.withOAuth({
@@ -224,7 +241,7 @@ const wallets = await sdk.wallets.queryWallets({
 - Full API coverage with IntelliSense support
 
 **Cons:**
-- Additional dependency (`@rise/rise-typescript-sdk`)
+- Additional dependency (`rise-ai-sdk`)
 - Slightly larger bundle size
 
 ### 4. Response
@@ -263,7 +280,7 @@ const data = await response.json();
 // POST /api/example-sdk-call
 // Body: { instanceId: "..." }
 
-import { RiseSDKClient } from '@rise/rise-typescript-sdk';
+import { RiseSDKClient } from 'rise-ai-sdk';
 
 const sdk = await RiseSDKClient.withOAuth({
   clientId: APP_ID,
@@ -341,9 +358,9 @@ The Rise TypeScript SDK provides:
 - **Full API Coverage**: Access to all Rise APIs with proper typing
 
 To use the SDK:
-1. Install it: `npm install @rise/rise-typescript-sdk`
+1. Install it: `npm install rise-ai-sdk`
 2. Set `USE_SDK=true` in your `.env` file
-3. Import and use: `import { RiseSDKClient } from '@rise/rise-typescript-sdk'`
+3. Import and use: `import { RiseSDKClient } from 'rise-ai-sdk'`
 
 See the [SDK documentation](https://github.com/giftwizard/rise-typescript-sdk) for more examples and API reference.
 

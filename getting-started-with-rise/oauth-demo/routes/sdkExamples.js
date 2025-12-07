@@ -18,7 +18,7 @@ router.post('/example-sdk-call', async (req, res) => {
       });
     }
 
-    const { RiseSDKClient } = await import('@rise/rise-typescript-sdk');
+    const { RiseSDKClient } = await import('rise-ai-sdk');
 
     const sdk = await RiseSDKClient.withOAuth({
       clientId: config.APP_ID,
